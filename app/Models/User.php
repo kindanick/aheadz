@@ -38,6 +38,12 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+
+    public function animals()
+    {
+        return $this->hasMany(Animal::class, 'created_by');
+    }
+
     protected function casts(): array
     {
         return [
