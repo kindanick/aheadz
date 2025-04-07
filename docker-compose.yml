@@ -34,6 +34,15 @@ services:
     networks:
       - aheadz-network
 
+  node:
+    build:
+      context: ./
+      dockerfile: docker/php/Dockerfile
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www
+    command: sleep infinity
+
 volumes:
   dbdata:
 
