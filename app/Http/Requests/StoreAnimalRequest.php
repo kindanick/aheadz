@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\Cage;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreAnimalRequest extends FormRequest
 {
@@ -12,7 +13,7 @@ class StoreAnimalRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -34,9 +35,13 @@ class StoreAnimalRequest extends FormRequest
                 function ($attribute, $value, $fail) {
                     $cage = Cage::find($value);
                     $currentAnimal = $this->route('animal');
+
+                    if (!$cage) {
+                        $fail('Выбранная клетка не существует');
+                        return;
+                    }
                     
-                    if ($cage->animals()->count() >= $cage->capacity 
-                        && !$cage->animals()->where('id', $currentAnimal->id)->exists()) {
+                    if ($cage->animals()->count() >= $cage->capacity ) {
                         $fail('В выбранной клетке нет свободных мест');
                     }
                 }

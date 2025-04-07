@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>{{ $cage->name }}</h1>
+        <h1>{{ $cage->sign }}</h1>
         @auth
         <a href="{{ route('animals.create', ['cage_id' => $cage->id]) }}" 
            class="btn btn-success">Добавить животное</a>

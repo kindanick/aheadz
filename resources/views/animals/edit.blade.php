@@ -35,7 +35,7 @@
                             @foreach($cages as $cage)
                             <option value="{{ $cage->id }}" 
                                 {{ $cage->id == old('cage_id', $animal->cage_id) ? 'selected' : '' }}>
-                                {{ $cage->name }} ({{ $cage->capacity - $cage->animals_count }} мест)
+                                {{ $cage->sign }} ({{ $cage->capacity - $cage->animals_count }} мест)
                             </option>
                             @endforeach
                         </select>

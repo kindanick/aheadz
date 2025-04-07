@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\Cage;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateCageRequest extends FormRequest
 {
@@ -12,7 +13,7 @@ class UpdateCageRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -23,11 +24,11 @@ class UpdateCageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'sometimes|string|max:255',
+            'sign' => 'sometimes|string|max:255',
             'capacity' => [
                 'sometimes',
                 'integer',
-                'min:' . Cage::find($this->route('cage'))->animals()->count()
+                'min:' . $this->route('cage')->animals()->count()
             ]
         ];
     }

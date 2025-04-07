@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Cage;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateAnimalRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class UpdateAnimalRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -22,7 +24,29 @@ class UpdateAnimalRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'species' => 'sometimes|required|string|max:255',
+            'name' => 'sometimes|required|string|max:255',
+            'age' => 'sometimes|required|integer|min:0',
+            'description' => 'sometimes|required|string',
+            'cage_id' => [
+                'sometimes',
+                'required',
+                'exists:cages,id',
+                function ($attribute, $value, $fail) {
+                    $cage = Cage::find($value);
+                    $currentAnimal = $this->route('animal');
+
+                    if (!$cage) {
+                        $fail('Выбранная клетка не существует');
+                        return;
+                    }
+                    
+                    if ($cage->animals()->count() >= $cage->capacity ) {
+                        $fail('В выбранной клетке нет свободных мест');
+                    }
+                }
+            ],
+            'image' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 }

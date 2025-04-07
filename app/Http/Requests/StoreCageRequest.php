@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreCageRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class StoreCageRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -22,7 +23,7 @@ class StoreCageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
+            'sign' => 'required|string|max:255',
             'capacity' => 'required|integer|min:1'
         ];
     }

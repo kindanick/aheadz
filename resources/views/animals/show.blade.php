@@ -42,7 +42,7 @@
                         <dt class="col-sm-3">Клетка:</dt>
                         <dd class="col-sm-9">
                             <a href="{{ route('cages.show', $animal->cage) }}">
-                                {{ $animal->cage->name }}
+                                {{ $animal->cage->sign }}
                             </a>
                         </dd>
 

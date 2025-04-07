@@ -8,8 +8,8 @@
             <form method="POST" action="{{ route('cages.store') }}">
                 @csrf
                 <div class="mb-3">
-                    <label for="name" class="form-label">Название клетки</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <label for="sign" class="form-label">Название клетки</label>
+                    <input type="text" class="form-control" id="sign" name="sign" required>
                 </div>
                 <div class="mb-3">
                     <label for="capacity" class="form-label">Вместимость</label>

@@ -13,7 +13,7 @@
     <div class="col-md-4 mb-4">
         <div class="card h-100">
             <div class="card-body">
-                <h5 class="card-title">{{ $cage->name }}</h5>
+                <h5 class="card-title">{{ $cage->sign }}</h5>
                 <p class="card-text">
                     Вместимость: {{ $cage->capacity }}<br>
                     Свободно мест: {{ $cage->capacity - $cage->animals_count }}

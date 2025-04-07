@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateAnimalRequest;
 use App\Models\Animal;
 use App\Models\Cage;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -47,6 +48,8 @@ class AnimalController extends Controller
             $path = $request->file('image')->store('public/animals');
             $data['image'] = Storage::url($path);
         }
+
+        $data['created_by'] = Auth::user()['id'];
 
         Animal::create($data);
         return redirect()->route('cages.index')->with('success', 'Животное добавлено');

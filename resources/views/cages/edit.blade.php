@@ -10,9 +10,9 @@
                 @method('PUT')
                 
                 <div class="mb-3">
-                    <label for="name" class="form-label">Название клетки</label>
-                    <input type="text" class="form-control" id="name" name="name" 
-                           value="{{ old('name', $cage->name) }}" required>
+                    <label for="sign" class="form-label">Название клетки</label>
+                    <input type="text" class="form-control" id="sign" name="sign" 
+                           value="{{ old('sign', $cage->sign) }}" required>
                 </div>
                 
                 <div class="mb-3">

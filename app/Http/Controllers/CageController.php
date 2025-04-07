@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCageRequest;
 use App\Http\Requests\UpdateCageRequest;
 use App\Models\Cage;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class CageController extends Controller
@@ -32,7 +33,12 @@ class CageController extends Controller
      */
     public function store(StoreCageRequest $request): RedirectResponse
     {
-        Cage::create($request->validated());
+        $data = $request->validated();
+
+        $data['created_by'] = Auth::user()['id'];
+
+        Cage::create($data);
+        
         return redirect()->route('cages.index')->with('success', 'Клетка создана');
     }
 
@@ -58,7 +64,8 @@ class CageController extends Controller
      */
     public function update(UpdateCageRequest $request, Cage $cage): RedirectResponse
     {
-        $cage->update($request->validated());
+        $updatedCage = $request->validated();
+        $cage->update($updatedCage);
         return redirect()->route('cages.index')->with('success', 'Клетка обновлена');
     }
 

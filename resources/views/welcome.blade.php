@@ -9,7 +9,7 @@
             <div class="col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $cage->name }}</h5>
+                        <h5 class="card-title">{{ $cage->sign }}</h5>
                         <p class="card-text">
                             <span class="badge bg-primary">Животных: {{ $cage->animals_count }}/{{ $cage->capacity }}</span>
                         </p>
