@@ -33,11 +33,24 @@
     docker compose exec app php artisan migrate
 ```
 
+Запустите seeder
+
+```bash
+    docker compose exec app php artisan db:seed
+```
+
 Приложение доступно по адресу
 
 ```
   localhost:8000
 ```
+
+Для логина использутей рут `/login`
+
+Креды для авторизации:
+
+`email: aheadz@mail.ru`
+`password: Pass123456`
     
 ## Переменные окружения
 
