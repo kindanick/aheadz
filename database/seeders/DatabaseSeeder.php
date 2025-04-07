@@ -18,8 +18,9 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $user = User::factory()->create([
-            'name' => 'TestUser',
-            'email' => 'TestUser@gmail.com',
+            'name' => 'Aheadz',
+            'email' => 'aheadz@mail.ru',
+            'password' => 'Pass123456',
         ]);
     
         Cage::factory(5)->create()->each(function ($cage) use ($user) {
